@@ -11,14 +11,11 @@
 # These live in opa-builtins sub-modules and are listed as supported in
 # opa-builtins/README.md, but the BuiltinProvider entry in each module's
 # META-INF/services file is commented out, so ServiceLoader never finds them
-# and they are unreachable for consumers. Tracked separately from this list;
-# un-commenting the file is the fix, after which the parity failures the
-# fixtures then expose need triage.
+# and they are unreachable for consumers. Un-commenting the file is the fix,
+# after which the parity failures the fixtures then expose need triage.
 #
-# opa-builtins-crypto and opa-builtins-semver are done — registering them
-# needed no parity fixes. The three below do: registering all of them at once
-# fails 32 compliance cases (json 16, net 13, regex 3) and exhausts the default
-# test heap, so they are being taken one module at a time.
+# crypto and semver needed no parity fixes, regex needed 3. The two modules
+# below are being taken one at a time: json (16 failures) and net (13).
 
 # opa-builtins-json
 json.filter
@@ -42,16 +39,6 @@ net.cidr_intersects
 net.cidr_is_valid
 net.cidr_merge
 net.lookup_ip_addr
-
-# opa-builtins-regex
-regex.find_all_string_submatch_n
-regex.find_n
-regex.globs_match
-regex.is_valid
-regex.match
-regex.replace
-regex.split
-regex.template_match
 
 # --- Not implemented anywhere in the SDK -------------------------------------
 
